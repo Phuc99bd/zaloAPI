@@ -16,4 +16,14 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+// Route.use(({request,response}, next)=>{
+//     response.returnSuccess = (data,msg)=>{
+//         return response.status(200).send({ data: data , message: msg})
+//     }
+//     response.returnError = (msg,data)=>{
+//         return response.status(404).send({message: msg , data: data || ""})
+//     }
+//      next();
+// })
+
 Route.on('/').render('welcome')

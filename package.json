@@ -28,6 +28,7 @@
     "@adonisjs/shield": "^1.0.8",
     "adonis-swagger": "^1.2.9",
     "axios": "^0.20.0",
+    "pem": "^1.14.4",
     "zalo-sdk": "^2.0.4"
   },
   "devDependencies": {},

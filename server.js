@@ -19,6 +19,7 @@
 */
 const https = require('https')
 const pem = require('pem')
+const { Ignitor } = require('@adonisjs/ignitor')
 
 pem.createCertificate({ days: 1, selfSigned: true }, (error, keys) => {
   if (error) {

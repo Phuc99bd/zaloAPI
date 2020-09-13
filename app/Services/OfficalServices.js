@@ -14,6 +14,9 @@ class OfficalServices{
                 "text": message
               }
         })
+        .then(data=>{
+            console.log(data);
+        })
     }
 }
 

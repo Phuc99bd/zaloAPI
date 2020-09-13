@@ -1,4 +1,5 @@
 "use strict";
+const OfiicalServices = use("App/Services/OfficalServices")
 
 class OfficalAPIController {
   
@@ -17,7 +18,13 @@ class OfficalAPIController {
    */
   async webhook({ request, response }) {
     const data = request.all();
-    console.log(data);
+    switch(data.event_name){
+      case "user_send_text":
+        let message = data.message.text.toLowerCase();
+        if(["hi","hello","chào","xin chào","chao"].indexOf(message) !== -1){
+          OfiicalServices.sendMessageText(data.sender.id,"Chào mừng bạn đã đến với Viezon. Chương trình giáo dục và đạo tạo học tập online được triển khai Viezon.vn")
+        }
+    }
     return response.send({});
   }
 }

@@ -15,6 +15,6 @@ Route.group(()=>{
 .prefix("api/v1")
 
 Route.group(()=>{
-    Route.post("/webhook","OfficalController.Webhook")
+    Route.post("/webhook","SocialController.Webhook")
 })
 .prefix("api/v1/offical")

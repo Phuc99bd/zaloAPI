@@ -15,7 +15,9 @@ class OfficalController{
    *           message: Hello Guess
    */
   async Webhook({ request, response }) {
-    return response.status(200).send({});
+    const data = request.all();
+    console.log(data);
+    return response.status(200).send(data);
   }
 }
 

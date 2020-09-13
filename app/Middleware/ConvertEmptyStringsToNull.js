@@ -9,9 +9,7 @@ class ConvertEmptyStringsToNull {
         }))
       )
     }
-    request.header("Access-Control-Allow-Origin", "*");
-    request.header("Access-Control-Allow-Methods", 'GET, PUT, PATCH, POST, DELETE');
-    request.header("Access-Control-Allow-Headers", "Content-Type");
+
     await next()
   }
 }

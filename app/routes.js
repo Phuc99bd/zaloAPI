@@ -13,3 +13,8 @@ Route.group(()=>{
     Route.get("/send-message","SocialController.sendMessage")
 })
 .prefix("api/v1")
+
+Route.group(()=>{
+    Route.post("/webhook","OfficalController.Webhook")
+})
+.prefix("api/v1/offical")

@@ -17,6 +17,7 @@ class OfficalAPIController {
    */
   async webhook({ request, response }) {
     const data = request.all();
+    console.log(data);
     return response.send({});
   }
 }

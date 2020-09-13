@@ -50,7 +50,8 @@ const aceProviders = [
 |
 */
 const aliases = {
-  "Constants": "App/constants/url"
+  "Constants": "App/constants/url",
+  "Offical": "App/constants/offical"
 }
 
 /*

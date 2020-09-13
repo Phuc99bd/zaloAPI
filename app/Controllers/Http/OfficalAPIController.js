@@ -1,24 +1,24 @@
+"use strict";
 
-class OfficalController{
-    /**
+class OfficalAPIController {
+  
+  /**
    * @swagger
-   * /api/v1/offical/webhook:
+   * /api/v1/offical-api/webhook:
    *   post:
    *     tags:
-   *       - Offical API
+   *       - Ofiical API
    *     summary: Sample API
-   *     parameters:
    *     responses:
    *       200:
    *         description: Send hello message
    *         example:
    *           message: Hello Guess
    */
-  async Webhook({ request, response }) {
+  async webhook({ request, response }) {
     const data = request.all();
-    console.log(data);
-    return response.status(200).send(data);
+    return response.send({});
   }
 }
 
-module.exports = OfficalController;
+module.exports = OfficalAPIController;

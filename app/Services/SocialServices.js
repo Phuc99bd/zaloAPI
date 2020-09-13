@@ -82,7 +82,6 @@ class SocialServices {
     let data = await axios.post(
       `${URL_INVITE_FRIEND}?access_token=${this.access_token}&message=${message}&to=${id}`
     );
-    console.log(data);
     return data.data;
   }
 

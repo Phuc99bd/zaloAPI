@@ -134,7 +134,7 @@ class SocialController {
   /**
    * @swagger
    * /api/v1/get-oauth:
-   *   get:
+   *   post:
    *     tags:
    *       - API
    *     summary: Sample API

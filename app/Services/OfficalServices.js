@@ -77,17 +77,17 @@ class OfficalServices {
       [
         {
           title: "Xem top 5 giảng viên nổi bật 💗",
-          "type": "oa.query.hide",
+          "type": "oa.query.show",
           payload: "#contributors",
         },
         {
           title: "Xem loại môn học 💗",
-          "type": "oa.query.hide",
+          "type": "oa.query.show",
           payload: "#subjects",
         },
         {
           title: "Xem  5 khóa học nổi bật nhất 💗",
-          "type": "oa.query.hide",
+          "type": "oa.query.show",
           payload: "#courses",
         },
       ]
@@ -111,6 +111,57 @@ class OfficalServices {
                   "type": "oa.open.url",
                   "url": "https://viezon.vn/trainer/"+ contributors[i].id
                   }
+              }
+        )
+    }
+    await this.sendListNotButtons(user_id , 
+        elements
+    )
+  }
+
+  static async contributors(user_id){
+    let data = await axios.get(API_CONTRIBUTORS,{
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false
+        })
+      })
+    let contributors = data.data.data.contributors.data;
+    let elements = [];
+    for(let i =0 ;i<5 ;i++){
+        elements.push(
+            {
+                title: contributors[i].title + " 🌟 ",
+                subtitle: contributors[i].description.split(".")[0] + "...",
+                image_url: contributors[i].imageFile.thumbnail,
+                default_action: {
+                  "type": "oa.open.url",
+                  "url": "https://viezon.vn/trainer/"+ contributors[i].id
+                  }
+              }
+        )
+    }
+    await this.sendListNotButtons(user_id , 
+        elements
+    )
+  }
+
+  static async subjects(user_id){
+    let data = await axios.get(API_SUBJECTS,{
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false
+        })
+      })
+    let subjects = data.data;;
+    let elements = [];
+    for(let i =0 ;i<5 ;i++){
+        elements.push(
+            {
+                title: subjects[i].title + " 🌟 ",
+                default_action: {
+                  "type": "oa.open.show",
+                  "title": "Xem các khóa học thuộc loại môn học",
+                  "payload": "#courseBySubjects"
+                }
               }
         )
     }

@@ -55,17 +55,17 @@ class OfficalServices {
       [
         {
           title: "Xem danh sách giảng viên 💗",
-          type: "oa.query.hide",
+          "type": "oa.query.show",
           payload: "#contributors",
         },
         {
           title: "Xem loại môn học 💗",
-          type: "oa.query.hide",
+          "type": "oa.query.show",
           payload: "#subjects",
         },
         {
           title: "Xem khóa học nổi bật nhất 💗",
-          type: "oa.query.show",
+          "type": "oa.query.show",
           payload: "#courses",
         },
       ]

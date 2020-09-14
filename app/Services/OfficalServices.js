@@ -105,7 +105,7 @@ class OfficalServices {
         elements.push(
             {
                 title: contributors[i].title,
-                subtitle: contributors[i].description,
+                subtitle: contributors[i].description.split(".")[0] + "...",
                 image_url: contributors[i].imageFile.thumbnail,
                 default_action: {
                   "type": "oa.open.url",

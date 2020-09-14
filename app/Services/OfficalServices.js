@@ -99,6 +99,7 @@ class OfficalServices {
         })
       })
     let contributors = data.data.contributors.data;
+    console.log(data.data);
     let elements = [];
     for(let i =0 ;i<5 ;i++){
         elements.push(

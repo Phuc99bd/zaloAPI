@@ -33,7 +33,7 @@ class OfficalServices {
         },
       })
       .then((data) => {
-        console.log(data);
+        console.log(data.config.data);
       });
   }
   static async sendListNotButtons(user_id, elements) {
@@ -53,7 +53,7 @@ class OfficalServices {
         },
       })
       .then((data) => {
-        console.log(data);
+        console.log(data.config.data);
       });
   }
   static async default(user_id) {

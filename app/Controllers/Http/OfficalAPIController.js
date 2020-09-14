@@ -20,10 +20,15 @@ class OfficalAPIController {
     const data = request.all();
     const user_id = data.sender.id;
     switch(data.event_name){
-      case "#contributors":
-          OfiicalServices.contributors(user_id)
-          break;
-      default: OfiicalServices.default(user_id)
+      case "user_send_text":
+        switch(data.message.text){
+          case "#contributors":
+            OfiicalServices.contributors(user_id)
+            break;
+          default: OfiicalServices.default(user_id)
+        }
+        break;
+
     }
     return response.send({});
   }

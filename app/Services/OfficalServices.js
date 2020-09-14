@@ -98,8 +98,9 @@ class OfficalServices {
           rejectUnauthorized: false
         })
       })
-    let contributors = data.data.contributors.data;
     console.log(data.data);
+
+    let contributors = data.data.contributors.data;
     let elements = [];
     for(let i =0 ;i<5 ;i++){
         elements.push(

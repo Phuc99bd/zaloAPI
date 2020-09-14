@@ -158,8 +158,7 @@ class OfficalServices {
             {
                 title: subjects[i].title + " 🌟 ",
                 default_action: {
-                  "type": "oa.open.show",
-                  "title": "Xem các khóa học thuộc loại môn học",
+                  "type": "oa.query.show",
                   "payload": "#courseBySubjects"
                 }
               }

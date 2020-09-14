@@ -23,7 +23,6 @@ class OfficalServices {
           user_id: user_id,
         },
         message: {
-          text: message,
           attachment: {
             type: "template",
             payload: {
@@ -34,7 +33,7 @@ class OfficalServices {
         },
       })
       .then((data) => {
-        console.log(data.data);
+        console.log(data);
       });
   }
   static async default(user_id) {

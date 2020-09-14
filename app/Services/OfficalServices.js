@@ -92,25 +92,27 @@ class OfficalServices {
     );
   }
   static async contributors(user_id){
-    let data = await axios.get(API_CONTRIBUTORS);
-    let contributors = data.contributors.data;
-    let elements = [];
-    for(let i =0 ;i<5 ;i++){
-        elements.push(
-            {
-                title: contributors[i].title,
-                subtitle: contributors[i].description,
-                image_url: contributors[i].imageFile.thumbnail,
-                default_action: {
-                  "type": "oa.open.url",
-                  "url": "https://viezon.vn/trainer/"+ contributors[i].id
-                  }
-              }
-        )
-    }
-    await this.sendListNotButtons(user_id , 
-        elements
-    )
+    let data = await axios.get(API_CONTRIBUTORS).then(data=>{
+        console.log(data);
+    });
+    // let contributors = data.contributors.data;
+    // let elements = [];
+    // for(let i =0 ;i<5 ;i++){
+    //     elements.push(
+    //         {
+    //             title: contributors[i].title,
+    //             subtitle: contributors[i].description,
+    //             image_url: contributors[i].imageFile.thumbnail,
+    //             default_action: {
+    //               "type": "oa.open.url",
+    //               "url": "https://viezon.vn/trainer/"+ contributors[i].id
+    //               }
+    //           }
+    //     )
+    // }
+    // await this.sendListNotButtons(user_id , 
+    //     elements
+    // )
   }
 }
 

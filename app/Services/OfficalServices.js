@@ -13,10 +13,9 @@ class OfficalServices {
           text: message,
         },
       })
-      .then((data) => {
-      });
+      .then((data) => {});
   }
-  static async sendListButton(user_id, buttons) {
+  static async sendListButton(user_id, elements, buttons) {
     axios
       .post(`${SEND_MESSAGE}?access_token=${Env.get("APP_ACCESS_CODE")}`, {
         recipient: {
@@ -27,6 +26,7 @@ class OfficalServices {
             type: "template",
             payload: {
               template_type: "list",
+              elements: elements,
               buttons: buttons,
             },
           },
@@ -41,18 +41,35 @@ class OfficalServices {
       user_id,
       "Chào mừng bạn đã đến với Viezon. Chương trình giáo dục và đạo tạo học tập online được triển khai Viezon.vn"
     );
-    this.sendListButton(user_id, [
-      {
-        title: "Button 1",
-        type: "oa.query.show",
-        payload: "#button1",
-      },
-      {
-        title: "Button 2",
-        type: "oa.query.show",
-        payload: "#button2",
-      }
-    ]);
+    this.sendListButton(
+      user_id,
+      [{
+          title: "Viezon.vn",
+          subtitle: "Học tập cùng Viezon",
+          image_url: "https://file.vzfile.vn/684/thumbnail-Banner_9-01.png",
+          default_action: {
+            "type": "oa.open.url",
+            "url": "https://viezon.vn"
+            }
+      }],
+      [
+        {
+          title: "Xem danh sách giảng viên 💗",
+          type: "oa.query.hide",
+          payload: "#contributors",
+        },
+        {
+          title: "Xem loại môn học 💗",
+          type: "oa.query.hide",
+          payload: "#subjects",
+        },
+        {
+          title: "Xem khóa học nổi bật nhất 💗",
+          type: "oa.query.show",
+          payload: "#courses",
+        },
+      ]
+    );
   }
 }
 

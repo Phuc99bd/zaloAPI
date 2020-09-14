@@ -14,7 +14,6 @@ class OfficalServices {
         },
       })
       .then((data) => {
-        console.log(data);
       });
   }
   static async sendListButton(user_id, message, buttons) {
@@ -35,7 +34,7 @@ class OfficalServices {
         },
       })
       .then((data) => {
-        console.log(data);
+        console.log(data.data);
       });
   }
   static async default(user_id) {

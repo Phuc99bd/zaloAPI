@@ -4,7 +4,7 @@ const Env = use("Env");
 
 class OfficalServices {
   static async sendMessageText(user_id, message) {
-    axios
+    await axios
       .post(`${SEND_MESSAGE}?access_token=${Env.get("APP_ACCESS_CODE")}`, {
         recipient: {
           user_id: user_id,
@@ -16,7 +16,7 @@ class OfficalServices {
       .then((data) => {});
   }
   static async sendListButton(user_id, elements, buttons) {
-    axios
+    await axios
       .post(`${SEND_MESSAGE}?access_token=${Env.get("APP_ACCESS_CODE")}`, {
         recipient: {
           user_id: user_id,
@@ -37,11 +37,11 @@ class OfficalServices {
       });
   }
   static async default(user_id) {
-    this.sendMessageText(
+    await this.sendMessageText(
       user_id,
       "Chào mừng bạn đã đến với Viezon. Chương trình giáo dục và đạo tạo học tập online được triển khai Viezon.vn"
     );
-    this.sendListButton(
+    await this.sendListButton(
       user_id,
       [{
           title: "Viezon.vn",

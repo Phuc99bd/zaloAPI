@@ -55,6 +55,7 @@ class OfficalServices {
       })
       .then((data) => {
         console.log(data.config.data);
+        console.log(data.data);
       });
   }
   static async default(user_id) {

@@ -136,7 +136,7 @@ class OfficalServices {
                 default_action: {
                   "type": "oa.open.url",
                   "url": "https://viezon.vn/trainer/"+ contributors[i].id
-                  }
+                }
               }
         )
     }
@@ -158,6 +158,7 @@ class OfficalServices {
             {
                 title: subjects[i].title + " 🌟 ",
                 subtitle: "️🎶️ 🎶️ 🎶️ 🎶",
+                image_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fsubjectevents%2F&psig=AOvVaw30qMPwJYsXuOfScOmovRlr&ust=1600186814700000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCSg8uG6esCFQAAAAAdAAAAABAL",
                 default_action: {
                   "type": "oa.query.show",
                   "payload": "#courseBySubjects"

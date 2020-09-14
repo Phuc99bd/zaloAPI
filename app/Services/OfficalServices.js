@@ -94,17 +94,20 @@ class OfficalServices {
   static async contributors(user_id){
     let data = await axios.get(API_CONTRIBUTORS);
     let contributors = data.contributors.data;
-    const elements = contributors.map(e=>{
-        return {
-          title: e.title,
-          subtitle: e.description,
-          image_url: e.imageFile.thumbnail,
-          default_action: {
-            "type": "oa.open.url",
-            "url": "https://viezon.vn/trainer/"+ e.id
-            }
-        }
-    })
+    let elements = [];
+    for(let i =0 ;i<5 ;i++){
+        elements.push(
+            {
+                title: contributors[i].title,
+                subtitle: contributors[i].description,
+                image_url: contributors[i].imageFile.thumbnail,
+                default_action: {
+                  "type": "oa.open.url",
+                  "url": "https://viezon.vn/trainer/"+ contributors[i].id
+                  }
+              }
+        )
+    }
     await this.sendListNotButtons(user_id , 
         elements
     )

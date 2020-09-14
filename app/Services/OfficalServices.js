@@ -16,7 +16,7 @@ class OfficalServices {
       .then((data) => {
       });
   }
-  static async sendListButton(user_id, message, buttons) {
+  static async sendListButton(user_id, buttons) {
     axios
       .post(`${SEND_MESSAGE}?access_token=${Env.get("APP_ACCESS_CODE")}`, {
         recipient: {

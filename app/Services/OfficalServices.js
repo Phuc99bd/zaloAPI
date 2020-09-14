@@ -157,6 +157,7 @@ class OfficalServices {
         elements.push(
             {
                 title: subjects[i].title + " 🌟 ",
+                subtitle: "️🎶️ 🎶️ 🎶️ 🎶",
                 default_action: {
                   "type": "oa.query.show",
                   "payload": "#courseBySubjects"

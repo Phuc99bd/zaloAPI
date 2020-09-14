@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { SEND_MESSAGE } = use("Offical");
+const { SEND_MESSAGE, API_CONTRIBUTORS , API_SUBJECTS , API_COURSES , API_DETAIL_COURSE } = use("Offical");
 const Env = use("Env");
 
 class OfficalServices {
@@ -15,7 +15,7 @@ class OfficalServices {
       })
       .then((data) => {});
   }
-  static async sendListButton(user_id, elements, buttons) {
+  static async sendListTemplate(user_id, elements, buttons) {
     await axios
       .post(`${SEND_MESSAGE}?access_token=${Env.get("APP_ACCESS_CODE")}`, {
         recipient: {
@@ -36,12 +36,32 @@ class OfficalServices {
         console.log(data);
       });
   }
+  static async sendListNotButtons(user_id, elements) {
+    await axios
+      .post(`${SEND_MESSAGE}?access_token=${Env.get("APP_ACCESS_CODE")}`, {
+        recipient: {
+          user_id: user_id,
+        },
+        message: {
+          attachment: {
+            type: "template",
+            payload: {
+              template_type: "list",
+              elements: elements
+            },
+          },
+        },
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
   static async default(user_id) {
     await this.sendMessageText(
       user_id,
-      "Chào mừng bạn đã đến với Viezon. Chương trình giáo dục và đạo tạo học tập online được triển khai Viezon.vn"
+      "Chào mừng bạn đã đến với Viezon. Chương trình giáo dục và đạo tạo học tập online được triển khai trên website: Viezon.vn ✌️ ✌️ ✌️"
     );
-    await this.sendListButton(
+    await this.sendListTemplate(
       user_id,
       [{
           title: "Viezon.vn",
@@ -54,22 +74,40 @@ class OfficalServices {
       }],
       [
         {
-          title: "Xem danh sách giảng viên 💗",
-          "type": "oa.query.show",
+          title: "Xem top 5 giảng viên nổi bật 💗",
+          "type": "oa.query.hide",
           payload: "#contributors",
         },
         {
           title: "Xem loại môn học 💗",
-          "type": "oa.query.show",
+          "type": "oa.query.hide",
           payload: "#subjects",
         },
         {
-          title: "Xem khóa học nổi bật nhất 💗",
-          "type": "oa.query.show",
+          title: "Xem  5 khóa học nổi bật nhất 💗",
+          "type": "oa.query.hide",
           payload: "#courses",
         },
       ]
     );
+  }
+  static async contributors(user_id){
+    let data = await axios.get(API_CONTRIBUTORS);
+    let contributors = data.contributors.data;
+    const elements = contributors.map(e=>{
+        return {
+          title: e.title,
+          subtitle: e.description,
+          image_url: e.imageFile.thumbnail,
+          default_action: {
+            "type": "oa.open.url",
+            "url": "https://viezon.vn/trainer/"+ e.id
+            }
+        }
+    })
+    await this.sendListNotButtons(user_id , 
+        elements
+    )
   }
 }
 

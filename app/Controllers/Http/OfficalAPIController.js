@@ -18,9 +18,12 @@ class OfficalAPIController {
    */
   async webhook({ request, response }) {
     const data = request.all();
-    console.log(data);
+    const user_id = data.sender.id;
     switch(data.event_name){
-      default: OfiicalServices.default(data.sender.id)
+      case "#contributors":
+          OfiicalServices.contributors(user_id)
+          break;
+      default: OfiicalServices.default(user_id)
     }
     return response.send({});
   }

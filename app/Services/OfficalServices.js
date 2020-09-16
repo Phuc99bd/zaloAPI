@@ -168,7 +168,7 @@ class OfficalServices {
     await this.sendListNotButtons(user_id, elements);
   }
   static async coursesBySubject(user_id,id) {
-    let data = await axios.get(`${API_COURSES}&subject_id=${id}`, {
+    let data = await axios.get(`${API_COURSES}&subjects=${id}`, {
       httpsAgent: new https.Agent({
         rejectUnauthorized: false,
       }),

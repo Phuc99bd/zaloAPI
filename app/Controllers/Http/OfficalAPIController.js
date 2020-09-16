@@ -29,6 +29,9 @@ class OfficalAPIController {
           case "#subjects":
             OfiicalServices.subjects(user_id);
             break;
+          case "#courses":
+            OfiicalServices.courses(user_id)
+            break;
           default: OfiicalServices.default(user_id)
         }
         break;

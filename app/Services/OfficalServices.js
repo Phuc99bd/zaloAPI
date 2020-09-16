@@ -1,5 +1,11 @@
 const axios = require("axios");
-const { SEND_MESSAGE, API_CONTRIBUTORS , API_SUBJECTS , API_COURSES , API_DETAIL_COURSE } = use("Offical");
+const {
+  SEND_MESSAGE,
+  API_CONTRIBUTORS,
+  API_SUBJECTS,
+  API_COURSES,
+  API_DETAIL_COURSE,
+} = use("Offical");
 const Env = use("Env");
 const https = require("https");
 
@@ -48,7 +54,7 @@ class OfficalServices {
             type: "template",
             payload: {
               template_type: "list",
-              elements: elements
+              elements: elements,
             },
           },
         },
@@ -65,110 +71,101 @@ class OfficalServices {
     );
     await this.sendListTemplate(
       user_id,
-      [{
+      [
+        {
           title: "Viezon.vn",
           subtitle: "Học tập cùng Viezon",
           image_url: "https://file.vzfile.vn/684/thumbnail-Banner_9-01.png",
           default_action: {
-            "type": "oa.open.url",
-            "url": "https://viezon.vn"
-            }
-      }],
+            type: "oa.open.url",
+            url: "https://viezon.vn",
+          },
+        },
+      ],
       [
         {
           title: "Xem top 5 giảng viên nổi bật 💗",
-          "type": "oa.query.show",
+          type: "oa.query.show",
           payload: "#contributors",
         },
         {
           title: "Xem loại môn học 💗",
-          "type": "oa.query.show",
+          type: "oa.query.show",
           payload: "#subjects",
         },
         {
           title: "Xem  5 khóa học nổi bật nhất 💗",
-          "type": "oa.query.show",
+          type: "oa.query.show",
           payload: "#courses",
         },
       ]
     );
   }
-  static async contributors(user_id){
-    let data = await axios.get(API_CONTRIBUTORS,{
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        })
-      })
+  static async contributors(user_id) {
+    let data = await axios.get(API_CONTRIBUTORS, {
+      httpsAgent: new https.Agent({
+        rejectUnauthorized: false,
+      }),
+    });
     let contributors = data.data.data.contributors.data;
     let elements = [];
-    for(let i =0 ;i<5 ;i++){
-        elements.push(
-            {
-                title: contributors[i].title,
-                subtitle: contributors[i].description.split(".")[0] + "...",
-                image_url: contributors[i].imageFile.thumbnail,
-                default_action: {
-                  "type": "oa.open.url",
-                  "url": "https://viezon.vn/trainer/"+ contributors[i].id
-                  }
-              }
-        )
+    for (let i = 0; i < 5; i++) {
+      elements.push({
+        title: contributors[i].title,
+        subtitle: contributors[i].description.split(".")[0] + "...",
+        image_url: contributors[i].imageFile.thumbnail,
+        default_action: {
+          type: "oa.open.url",
+          url: "https://viezon.vn/trainer/" + contributors[i].id,
+        },
+      });
     }
-    await this.sendListNotButtons(user_id , 
-        elements
-    )
+    await this.sendListNotButtons(user_id, elements);
   }
 
-  static async contributors(user_id){
-    let data = await axios.get(API_CONTRIBUTORS,{
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        })
-      })
-    let contributors = data.data.data.contributors.data;
+  static async subjects(user_id) {
+    let data = await axios.get(API_SUBJECTS, {
+      httpsAgent: new https.Agent({
+        rejectUnauthorized: false,
+      }),
+    });
+    let subjects = data.data;
     let elements = [];
-    for(let i =0 ;i<5 ;i++){
-        elements.push(
-            {
-                title: contributors[i].title + " 🌟 ",
-                subtitle: contributors[i].description.split(".")[0] + "...",
-                image_url: contributors[i].imageFile.thumbnail,
-                default_action: {
-                  "type": "oa.open.url",
-                  "url": "https://viezon.vn/trainer/"+ contributors[i].id
-                }
-              }
-        )
+    for (let i = 0; i < 5; i++) {
+      elements.push({
+        title: subjects[i].title + " 🌟 ",
+        subtitle: "️🎶️ 🎶️ 🎶️ 🎶",
+        image_url:
+          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fsubjectevents%2F&psig=AOvVaw30qMPwJYsXuOfScOmovRlr&ust=1600186814700000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCSg8uG6esCFQAAAAAdAAAAABAL",
+        default_action: {
+          type: "oa.query.show",
+          payload: `#courseBySubjects-${subjects[i].id}`,
+        },
+      });
     }
-    await this.sendListNotButtons(user_id , 
-        elements
-    )
+    await this.sendListNotButtons(user_id, elements);
   }
-
-  static async subjects(user_id){
-    let data = await axios.get(API_SUBJECTS,{
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        })
-      })
-    let subjects = data.data;;
+  static async courses(user_id) {
+    let data = await axios.get(API_COURSES, {
+      httpsAgent: new https.Agent({
+        rejectUnauthorized: false,
+      }),
+    });
+    let courses = data.data.data.data;
     let elements = [];
-    for(let i =0 ;i<5 ;i++){
-        elements.push(
-            {
-                title: subjects[i].title + " 🌟 ",
-                subtitle: "️🎶️ 🎶️ 🎶️ 🎶",
-                image_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fsubjectevents%2F&psig=AOvVaw30qMPwJYsXuOfScOmovRlr&ust=1600186814700000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCSg8uG6esCFQAAAAAdAAAAABAL",
-                default_action: {
-                  "type": "oa.query.show",
-                  "payload": `#courseBySubjects-${subjects[i].id}`
-                }
-              }
-        )
+    for (let i = 0; i < 5; i++) {
+      elements.push({
+        title: courses[i].title + " 🌟 ",
+        subtitle: courses[i].description.split(".")[0],
+        image_url:
+          courses[i].imageFile.thumbnail,
+        default_action: {
+          type: "oa.query.show",
+          payload: `https://viezon.vn/course/${courses[i].slug}`,
+        },
+      });
     }
-    await this.sendListNotButtons(user_id , 
-        elements
-    )
+    await this.sendListNotButtons(user_id, elements);
   }
 }
 

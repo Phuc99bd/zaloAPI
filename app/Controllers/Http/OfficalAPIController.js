@@ -45,6 +45,9 @@ class OfficalAPIController {
     }
     return response.send({});
   }
+  async test({request, response}){
+    return response.status(200).send({})
+  }
 }
 
 module.exports = OfficalAPIController;

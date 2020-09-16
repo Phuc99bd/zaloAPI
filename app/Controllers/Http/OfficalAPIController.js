@@ -33,10 +33,10 @@ class OfficalAPIController {
             OfiicalServices.courses(user_id)
             break;
           default: 
-            if("#courseBySubjects" == data.message.text.split("-")[0]){
-              OfiicalServices.coursesBySubject(user_id , +data.message.text.split("-")[1])
-              break;
-            }
+            // if("#courseBySubjects" == data.message.text.split("-")[0]){
+            //   OfiicalServices.coursesBySubject(user_id , +data.message.text.split("-")[1])
+            //   break;
+            // }
             OfiicalServices.default(user_id)
         }
         break;

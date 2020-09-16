@@ -160,7 +160,29 @@ class OfficalServices {
         image_url:
           courses[i].imageFile.thumbnail,
         default_action: {
-          type: "oa.query.show",
+          type: "oa.open.url",
+          payload: `https://viezon.vn/course/${courses[i].slug}`,
+        },
+      });
+    }
+    await this.sendListNotButtons(user_id, elements);
+  }
+  static async coursesBySubject(user_id,id) {
+    let data = await axios.get(`${API_COURSES}&subject_id=${id}`, {
+      httpsAgent: new https.Agent({
+        rejectUnauthorized: false,
+      }),
+    });
+    let courses = data.data.data.data;
+    let elements = [];
+    for (let i = 0; i < 5; i++) {
+      elements.push({
+        title: courses[i].title + " 🌟 ",
+        subtitle: courses[i].description.split(".")[0],
+        image_url:
+          courses[i].imageFile.thumbnail,
+        default_action: {
+          type: "oa.open.url",
           payload: `https://viezon.vn/course/${courses[i].slug}`,
         },
       });

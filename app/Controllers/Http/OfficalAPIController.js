@@ -19,7 +19,6 @@ class OfficalAPIController {
   async webhook({ request, response }) {
     const data = request.all();
     const user_id = data.sender.id;
-    console.log(data);
     switch(data.event_name){
       case "user_send_text":
         switch(data.message.text){

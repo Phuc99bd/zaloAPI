@@ -173,6 +173,7 @@ class OfficalServices {
         rejectUnauthorized: false,
       }),
     });
+    console.log(data);
     let courses = data.data.data.data;
     let elements = [];
     for (let i = 0; i < 5; i++) {

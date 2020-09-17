@@ -177,19 +177,22 @@ class OfficalServices {
     console.log(data);
     let courses = data.data.data.data;
     let elements = [];
-    for (let i = 0; i < 5; i++) {
-      elements.push({
-        title: courses[i].title + " 🌟 ",
-        subtitle: courses[i].description.split(".")[0],
-        image_url:
-          courses[i].imageFile.thumbnail,
-        default_action: {
-          type: "oa.open.url",
-          url: `https://viezon.vn/course/${courses[i].slug}`,
-        },
-      });
+    if(courses.length >5){
+      for (let i = 0; i < 5; i++) {
+        elements.push({
+          title: courses[i].title + " 🌟 ",
+          subtitle: courses[i].description.split(".")[0],
+          image_url:
+            courses[i].imageFile.thumbnail,
+          default_action: {
+            type: "oa.open.url",
+            url: `https://viezon.vn/course/${courses[i].slug}`,
+          },
+        });
+      }
+      await this.sendListNotButtons(user_id, elements);
     }
-    await this.sendListNotButtons(user_id, elements);
+    await this.sendMessageText(user_id,"Loại môn học này vẫn chưa tồn tại khóa học nào")
   }
 }
 

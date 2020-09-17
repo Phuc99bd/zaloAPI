@@ -177,8 +177,9 @@ class OfficalServices {
     console.log(data);
     let courses = data.data.data.data;
     let elements = [];
+    const length = courses.length > 5 ? 5 : courses.length;
     if(courses.length >5){
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < length; i++) {
         elements.push({
           title: courses[i].title + " 🌟 ",
           subtitle: courses[i].description.split(".")[0],

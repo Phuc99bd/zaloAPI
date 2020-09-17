@@ -161,7 +161,7 @@ class OfficalServices {
           courses[i].imageFile.thumbnail,
         default_action: {
           type: "oa.open.url",
-          payload: `https://viezon.vn/course/${courses[i].slug}`,
+          url: `https://viezon.vn/course/${courses[i].slug}`,
         },
       });
     }
@@ -185,7 +185,7 @@ class OfficalServices {
           courses[i].imageFile.thumbnail,
         default_action: {
           type: "oa.open.url",
-          payload: `https://viezon.vn/course/${courses[i].slug}`,
+          url: `https://viezon.vn/course/${courses[i].slug}`,
         },
       });
     }

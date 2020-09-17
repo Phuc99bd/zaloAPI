@@ -157,8 +157,7 @@ class OfficalServices {
       elements.push({
         title: courses[i].title + " 🌟 ",
         subtitle: courses[i].description.split(".")[0],
-        image_url:
-          courses[i].imageFile.thumbnail,
+        image_url: courses[i].imageFile.thumbnail,
         default_action: {
           type: "oa.open.url",
           url: `https://viezon.vn/course/${courses[i].slug}`,
@@ -167,8 +166,8 @@ class OfficalServices {
     }
     await this.sendListNotButtons(user_id, elements);
   }
-  static async coursesBySubject(user_id,id) {
-    console.log(user_id,id);
+  static async coursesBySubject(user_id, id) {
+    console.log(user_id, id);
     let data = await axios.get(`${API_COURSES}&subjects=${id}`, {
       httpsAgent: new https.Agent({
         rejectUnauthorized: false,
@@ -178,22 +177,24 @@ class OfficalServices {
     let courses = data.data.data.data;
     let elements = [];
     const length = courses.length > 5 ? 5 : courses.length;
-    if(courses.length >5){
-      for (let i = 0; i < length; i++) {
-        elements.push({
-          title: courses[i].title + " 🌟 ",
-          subtitle: courses[i].description.split(".")[0],
-          image_url:
-            courses[i].imageFile.thumbnail,
-          default_action: {
-            type: "oa.open.url",
-            url: `https://viezon.vn/course/${courses[i].slug}`,
-          },
-        });
-      }
-      await this.sendListNotButtons(user_id, elements);
+    for (let i = 0; i < length; i++) {
+      elements.push({
+        title: courses[i].title + " 🌟 ",
+        subtitle: courses[i].description.split(".")[0],
+        image_url: courses[i].imageFile.thumbnail,
+        default_action: {
+          type: "oa.open.url",
+          url: `https://viezon.vn/course/${courses[i].slug}`,
+        },
+      });
     }
-    await this.sendMessageText(user_id,"Loại môn học này vẫn chưa tồn tại khóa học nào")
+    await this.sendListNotButtons(user_id, elements);
+    if (length == 0) {
+      await this.sendMessageText(
+        user_id,
+        "Loại môn học này vẫn chưa tồn tại khóa học nào"
+      );
+    }
   }
 }
 
